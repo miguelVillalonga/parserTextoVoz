@@ -1,0 +1,70 @@
+Sí, existe una forma de que el texto de una web se transcriba a sonido para personas invidentes. Esto se puede lograr utilizando tecnologías de Text-to-Speech (TTS) que convierten el texto en audio. Aquí te presento una opción sencilla para lograrlo:
+
+### Usar una Página Web con TTS Integrado
+
+1. **Crear una Página Web con HTML y JavaScript**:
+   Puedes crear una página web sencilla que tome un archivo de texto y lo convierta en audio utilizando las capacidades de TTS que ya están presentes en la mayoría de los navegadores modernos.
+
+2. **Código HTML y JavaScript**:
+   Aquí tienes un ejemplo de cómo podría verse tu página web:
+
+   ```html
+   <!DOCTYPE html>
+   <html lang="es">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Transcripción de Texto a Sonido</title>
+   </head>
+   <body>
+       <h1>Transcripción de Texto a Sonido</h1>
+       <input type="file" id="fileInput" accept=".txt">
+       <button onclick="readText()">Leer Texto</button>
+       <script>
+           function readText() {
+               const fileInput = document.getElementById('fileInput');
+               const file = fileInput.files[0];
+               if (file) {
+                   const reader = new FileReader();
+                   reader.onload = function(e) {
+                       const text = e.target.result;
+                       const speech = new SpeechSynthesisUtterance(text);
+                       speech.lang = 'es-ES';
+                       window.speechSynthesis.speak(speech);
+                   };
+                   reader.readAsText(file);
+               } else {
+                   alert('Por favor, selecciona un archivo de texto.');
+               }
+           }
+       </script>
+   </body>
+   </html>
+   ```
+
+3. **Cómo Funciona**:
+   - El usuario selecciona un archivo de texto desde su computadora.
+   - Al hacer clic en el botón "Leer Texto", el archivo se carga y su contenido se convierte en una cadena de texto.
+   - Se crea un objeto `SpeechSynthesisUtterance` con el texto cargado.
+   - El navegador utiliza la API de SpeechSynthesis para convertir el texto en audio y reproducirlo.
+
+### Pasos para Implementar:
+
+1. **Crear el Archivo HTML**:
+   - Copia el código anterior en un archivo con extensión `.html` (por ejemplo, `transcripcion.html`).
+
+2. **Abrir el Archivo en un Navegador**:
+   - Abre el archivo HTML en cualquier navegador moderno (Chrome, Firefox, Edge, etc.).
+
+3. **Subir el Archivo de Texto**:
+   - Utiliza el input de archivo para seleccionar y subir un archivo de texto.
+
+4. **Escuchar el Texto**:
+   - Haz clic en "Leer Texto" y el navegador comenzará a leer el texto en voz alta.
+
+### Ventajas:
+- **Accesibilidad**: Facilita el acceso a información para personas invidentes.
+- **Simplicidad**: No requiere instalación de software adicional, solo un navegador moderno.
+- **Flexibilidad**: Puedes adaptar el código para mejorar la interfaz o añadir nuevas funcionalidades.
+
+Este método proporciona una solución rápida y sencilla para convertir texto en sonido, utilizando tecnologías web ampliamente soportadas.
